@@ -1,0 +1,78 @@
+﻿@model netcentricproject.Models.MarksModel
+@*@model netcentricproject.Models.SubjectModel*@
+
+@*@model Tuple<MarksModel, SubjectModel>*@
+
+
+    @{
+        ViewData["Title"] = "Create";
+    }
+
+    <h1>Create</h1>
+
+    <h4>MarksModel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+
+                    <input type="hidden" asp-for="MarksId" class="form-control" />
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="StudentId" class="control-label"></label>
+                    @* <input asp-for="StudentId" class="form-control" /> *@
+                    @Html.DropDownListFor(x => x.StudentId, ViewBag.Students as SelectList, "--Select Student--", new { @class = "form-control" })
+                    <span asp-validation-for="StudentId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SubjectId" class="control-label"></label>
+                    @Html.DropDownListFor(x => x.SubjectId, ViewBag.Subjects as SelectList, "--Select Subject--", new { @class = "form-control" })
+                    <span asp-validation-for="SubjectId" class="text-danger"></span>
+                </div>
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>
+                                S.No.
+                            </th>
+
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.SubjectName)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.ObtainedMarks)
+                            </th>
+
+                        </tr>
+                    </thead>
+                   
+                </table>
+
+
+                @*<div class="form-group">
+                        <label asp-for="@Html.DisplayNameFor(x => x.SubjectName[0])" class="control-label"></label>
+                        <input asp-for="@Html.DisplayNameFor(x => x.SubjectName[0])" class="form-control" />
+                        <span asp-validation-for="@Html.DisplayNameFor(x => x.SubjectName[0])" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="ObtainedMarks" class="control-label"></label>
+                    <input asp-for="ObtainedMarks" class="form-control" />
+                    <span asp-validation-for="ObtainedMarks" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="MarksIndex">Back to List</a>
+    </div>
+

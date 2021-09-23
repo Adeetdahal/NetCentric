@@ -1,0 +1,69 @@
+﻿@model IEnumerable<StudentModel>
+
+@{
+    ViewData["Title"] = "Students";
+    int studentCounter = 1;
+}
+
+<h1>Students</h1>
+
+<div style="display: flex; justify-content: flex-start ">
+    <a asp-action="Create">Create New</a>
+</div>
+
+<div style="display:flex ; justify-content:end ">
+            <input id="keyword" class="form-control-sm" placeholder="Search Keyword" />
+                <button id="search-employee" class="btn btn-sm btn-success w-15 ml-2">
+                <span class="spinner-border spinner-border-sm mr-1" role="status" style="display:none"></span>
+                <i class="fa fa-search mr-1"></i> Search  </button>
+</div>
+
+@*@using (Html.BeginForm("search", "StudentController", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="Search" />
+}*@
+
+<table class="table">
+    <thead class="thead-light">
+        <tr colspan="4">
+            <th>
+                S.No.
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Roll
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @studentCounter
+                </td>
+                <td>
+                    @item.Name
+
+                </td>
+                <td>
+                    @item.Roll
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { studentId = item.StudentId }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { studentId = item.StudentId }) |
+
+                    @Html.ActionLink("Marks", "StudentMarks", "Marks", new { studentId = item.StudentId })
+                </td>
+            </tr>
+            studentCounter++;
+        }
+    </tbody>
+</table>
